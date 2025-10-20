@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+:root {
+  --background: #8a0023c6;
+  --light-pink: #fcbbcc;
+  --pink: #fba7bd;
+  --dark-pink: #f980a1;
+  --shadow: #e8c5d0;
+  --card: white;
+  --heart: #f40b4a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: var(--background);
+  font-family: "Chewy", system-ui;
+  font-size: 1vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  top: 0vmin;
+}
+
+/* 💌 Phong bì */
+.envelope {
+  position: relative;
+  background: var(--dark-pink);
+  height: 36vmin;      /* tăng 20% */
+  width: 57.5vmin;     /* tăng 20% */
+}
+
+/* 📜 Lá thư bên trong */
+.card {
+  position: absolute;
+  background: var(--card);
+  height: 30vmin;       /* tăng 20% */
+  width: 51.5vmin;      /* tăng 20% */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 3vmin;          /* tăng 20% */
+  top: 0vmin;
+  animation: slide-rev 0.2s ease-out;
+}
+
+/* 💬 Nội dung lời chúc */
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-family: "Chewy", system-ui;
+  font-weight: 400;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+/* Tiêu đề lớn */
+.message .main-title {
+  color: #e91e63;
+  font-size: 2.8vmin;
+  display: block;
+  margin-bottom: 0.6vmin;
+}
+
+/* Lời chúc nhỏ hơn */
+.message .sub-text {
+  color: #ff80ab;
+  font-size: 1.8vmin;
+  line-height: 1.5;
+  display: block;
+}
+
+/* ✉️ Nắp phong bì */
+.cover {
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-bottom: 18vmin solid var(--pink);    /* tăng 20% */
+  border-left: 28.8vmin solid transparent;
+  border-right: 28.8vmin solid transparent;
+  top: 18vmin;
+  z-index: 3;
+}
+
+.cover::after {
+  position: absolute;
+  content: "";
+  border-left: 29.3vmin solid var(--light-pink);
+  border-bottom: 18vmin solid transparent;
+  border-top: 18vmin solid transparent;
+  top: -18vmin;
+  left: -28.8vmin;
+}
+
+.cover::before {
+  position: absolute;
+  content: "";
+  border-right: 29.3vmin solid var(--light-pink);
+  border-bottom: 18vmin solid transparent;
+  border-top: 18vmin solid transparent;
+  top: -18vmin;
+  left: -0.5vmin;
+}
+
+/* 🩷 Phần nắp mở */
+.lid {
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-top: 18vmin solid var(--dark-pink);
+  border-left: 28.8vmin solid transparent;
+  border-right: 28.8vmin solid transparent;
+  top: 0;
+  transform-origin: top;
+  animation: open-rev 2s;
+}
+
+.container:hover .lid {
+  animation: open 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.container:hover .card {
+  animation: slide 0.2s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+/* 🌑 Bóng đổ */
+.shadow {
+  position: relative;
+  top: 3.5vmin;
+  border-radius: 50%;
+  opacity: 0.7;
+  height: 2.4vmin;
+  width: 57.5vmin;
+  background: var(--shadow);
+}
+
+/* 💖 Trái tim nhỏ trong lá thư */
+.heart {
+  position: relative;
+  width: 6vmin;       /* tăng 20% */
+  height: 4.8vmin;    /* tăng 20% */
+  top: 8vmin;         /* tăng 20% */
+  left: -1.2vmin;
+}
+
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  left: 3vmin;        /* tăng nhẹ để cân đối */
+  top: 8vmin;
+  width: 3vmin;
+  height: 4.8vmin;
+  background: var(--heart);
+  border-radius: 3vmin 3vmin 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/* 🎞 Animation */
+@keyframes open {
+  100% {
+    transform: rotatex(180deg);
+  }
+}
+
+@keyframes slide {
+  100% {
+    transform: translatey(-18vmin);
+    z-index: 2;
+  }
+}
+
+@keyframes open-rev {
+  from {
+    transform: rotatex(-180deg);
+  }
+}
+
+@keyframes slide-rev {
+  from {
+    transform: translatey(-18vmin);
+  }
+}
